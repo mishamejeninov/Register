@@ -6,7 +6,8 @@ class Form extends React.Component {
     this.state = {
       input: "",
       password: "",
-      confirmPassword: ""
+      confirmPassword: "",
+      login: "Login"
     };
 
     this.onChangeName = this.onChangeName.bind(this);
@@ -28,7 +29,7 @@ class Form extends React.Component {
 
   handleSubmit = () => {
     const { input } = this.state;
-    alert(`Welcome ${input} You have successfully registered`);
+    alert(`Welcome ${input} You have successfully Login`);
   };
 
   render() {
@@ -55,15 +56,22 @@ class Form extends React.Component {
           onChange={this.enterPassword}
         />
 
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          maxLength="8"
-          value={this.state.confirmPassword}
-          onChange={this.PasswordChange}
-          disabled={!this.state.password}
-        />
-        <button disabled={!enabled}>Register</button>
+        {this.state.password && (
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            maxLength="8"
+            value={this.state.confirmPassword}
+            onChange={this.PasswordChange}
+            disabled={!this.state.password}
+          />
+        )}
+
+        {this.state.confirmPassword && (
+          <button disabled={!enabled}>{this.state.login}</button>
+        )}
+
+        {/* <button disabled={!enabled}>Register</button> */}
       </form>
     );
   }
